@@ -1,0 +1,30 @@
+<%= form_for(@fixture) do |f| %>
+  <% if @fixture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fixture.errors.count, "error") %> prohibited this fixture from being saved:</h2>
+
+      <ul>
+      <% @fixture.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date, :order => [:day, :month, :year] %>
+  </div>
+  <div class="field">
+    <%= f.label :home_team %><br />
+	<% teams = Team.all %>
+	<%= f.collection_select :home_team, Team.all, :name, :name, :include_blank=>"-Please Select Home Team-" %>
+  </div>
+  <div class="field">
+    <%= f.label :away_team %><br />
+    <%= f.collection_select :away_team, Team.all, :name, :name, :include_blank=>"-Please Select Away Team-" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<h1>Listing fixtures</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+	<th>Kick Off</th>
+    <th>Home team</th>
+    <th>Away team</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fixtures.each do |fixture| %>
+  <tr>
+    <td><%= fixture.date.strftime("%d/%m/%Y") %></td>
+	<td><%= fixture.date.strftime("%H:%M") %></td>
+    <td><%= fixture.home_team %></td>
+    <td><%= fixture.away_team %></td>
+    <td><%= link_to 'Show', fixture %></td>
+    <td><%= link_to 'Edit', edit_fixture_path(fixture) %></td>
+    <td><%= link_to 'Destroy', fixture, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fixture', new_fixture_path %>
